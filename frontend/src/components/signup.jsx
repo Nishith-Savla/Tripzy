@@ -7,7 +7,7 @@ import { useAuth } from "../context/auth";
 import "../css/signin.css";
 import "../css/style.css";
 import "../css/util.css";
-import Navbar from "./Navbar";
+import Navbar from "./navbar";
 
 function Signup() {
   const auth = useAuth();

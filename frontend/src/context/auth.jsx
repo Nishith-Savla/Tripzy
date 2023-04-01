@@ -17,7 +17,10 @@ const AuthProvider = (props) => {
 			return;
 		}
 
-		const { id } = await postUser({ token: user.accessToken });
+		const {
+			data: { id },
+		} = await postUser({ token: user.accessToken });
+		console.log(id);
 
 		user.id = id;
 		setUser(user);
