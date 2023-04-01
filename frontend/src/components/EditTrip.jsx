@@ -1,17 +1,36 @@
-import { useRef, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useEffect, useRef } from "react";
 import "../css/CreateTrip.css";
 import Navbar from "./navbar";
+import { getTrip } from "../api/trips";
 
-function EditTrip({ title, description, startDate, endDate, mapUrl }) {
+function EditTrip({ id }) {
+	const tripQuery = useQuery({
+		queryKey: ["trips", id],
+		queryFn: () => getTrip(id),
+	});
+
 	const formRef = useRef();
 
 	useEffect(() => {
-		formRef.current.title.value = title ?? "";
-		formRef.current.description.value = description ?? "";
-		formRef.current.startDate.value = startDate ?? Date.now();
-		formRef.current.endDate.value = endDate ?? Date.now();
-		formRef.current.mapUrl.value = mapUrl ?? "";
-	}, []);
+		if (tripQuery.data) {
+			const { title, description, startDate, endDate, mapUrl } = tripQuery.data;
+
+			formRef.current.title.value = title ?? "";
+			formRef.current.description.value = description ?? "";
+			formRef.current.startDate.value = startDate ?? Date.now();
+			formRef.current.endDate.value = endDate ?? Date.now();
+			formRef.current.mapUrl.value = mapUrl ?? "";
+		}
+	}, [tripQuery.data]);
+
+	if (tripQuery.isLoading) return "Loading...";
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		const formData = new FormData(formRef.current);
+		const data = Object.fromEntries(formData);
+	};
 
 	return (
 		<>
@@ -19,7 +38,13 @@ function EditTrip({ title, description, startDate, endDate, mapUrl }) {
 				<Navbar />
 				<h2 className="text-center trip-title">Create Trip</h2>
 				<div className="d-flex justify-content-center">
-					<form className="input-container" ref={formRef}>
+					<form
+						encType="multipart/form-data"
+						className="input-container"
+						ref={formRef}
+						onSubmit={handleSubmit}
+						method="post"
+					>
 						<div className="d-flex g-3">
 							<div className="d-flex dir-col stretch">
 								<label className="input-label" htmlFor="title">
@@ -31,7 +56,7 @@ function EditTrip({ title, description, startDate, endDate, mapUrl }) {
 								<label className="input-label" htmlFor="image">
 									Upload Cover Image
 								</label>
-								<input type="file" id="image" name="image" />
+								<input type="file" id="image" name="coverImage" />
 							</div>
 						</div>
 						<div>
@@ -71,11 +96,14 @@ function EditTrip({ title, description, startDate, endDate, mapUrl }) {
 								placeholder="Enter the google maps link"
 							/>
 						</div>
+						<button
+							type="submit"
+							className="btn d-flex align-items-center justify-content-center mx-auto"
+						>
+							Save
+						</button>
 					</form>
 				</div>
-				<button className="btn d-flex align-items-center justify-content-center mx-auto">
-					Save
-				</button>
 			</section>
 		</>
 	);

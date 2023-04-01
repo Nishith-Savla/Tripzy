@@ -7,20 +7,25 @@ import "./css/palette.css";
 import AddActivities from "./components/AddActivities";
 import EditTrip from "./components/EditTrip";
 import Home from "./components/Home";
+import { QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 function App() {
 	return (
 		<>
-			<AuthProvider>
-				<Router>
-					<Routes>
-						<Route path="/signin" element={<Signup />} />
-						<Route path="/addActivity" element={<AddActivities />} />
-						<Route path="/" element={<Home />} />
-						<Route path="/createTrip" element={<EditTrip />} />
-					</Routes>
-				</Router>
-			</AuthProvider>
+			<QueryClientProvider client={queryClient}>
+				<AuthProvider>
+					<Router>
+						<Routes>
+							<Route path="/signin" element={<Signup />} />
+							<Route path="/addActivity" element={<AddActivities />} />
+							<Route path="/" element={<Home />} />
+							<Route path="/createTrip" element={<EditTrip id="6428199dd63fe521bc4a8dc4" />} />
+						</Routes>
+					</Router>
+				</AuthProvider>
+			</QueryClientProvider>
 			<ToastContainer />
 		</>
 	);
