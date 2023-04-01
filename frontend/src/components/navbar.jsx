@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import trpizyLogo from "../assets/logo/tripzy.png";
 import { AuthContext } from "../context/auth";
 import { useNavigate } from "react-router-dom";
-function Navbar(props) {
+function Navbar() {
 	const { user, loading } = useContext(AuthContext);
 	const navigate = useNavigate();
 	useEffect(() => {

@@ -1,41 +1,34 @@
-import { createContext, useContext, useState, useEffect } from "react";
-import { loginWithGoogle, auth } from "../firebase/firebase";
+import { createContext, useContext, useState } from "react";
+import { loginWithGoogle } from "../firebase/firebase";
 import { postUser } from "../api/user";
-import { useAuthState } from "react-firebase-hooks/auth";
 
-export const AuthContext = createContext();
+const AuthContext = createContext();
 
 const AuthProvider = (props) => {
 	const [user, setUser] = useState(null);
-	const [_, loading, error] = useAuthState(auth);
-	useEffect(() => {
-		auth.onAuthStateChanged(setUser);
-	}, []);
 
 	const login = async () => {
-		const { error } = await loginWithGoogle();
+		const { user, error } = await loginWithGoogle();
 
-		if (!user && !loading) {
-			console.log(error);
+		if (!user) {
 			if (error.code !== "auth/cancelled-popup-request") {
 				notify(error.message, "error");
 			}
 			return;
 		}
 
-		const { id } = await postUser({ token: user.accessToken });
+		const {
+			data: { id },
+		} = await postUser({ token: user.accessToken });
+		console.log(id);
 
 		user.id = id;
-		// setUser(user);
+		setUser(user);
 	};
 
-	const value = { user, login, loading, error };
+	const value = { user, login };
 
-	return (
-		<AuthContext.Provider value={value} {...props}>
-			{props.children}
-		</AuthContext.Provider>
-	);
+	return <AuthContext.Provider value={value} {...props} />;
 };
 
 export const useAuth = () => useContext(AuthContext);

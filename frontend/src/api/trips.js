@@ -32,9 +32,9 @@ export function createTrip({
 		.then((res) => res.data);
 }
 
-export function updateTrip(params) {
+export function updateTrip(id, params) {
 	return axiosInstance
-		.patch("/trips", {
+		.patch(`/trips/${id}`, {
 			...params,
 		})
 		.then((res) => res.data);
