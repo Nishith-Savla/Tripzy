@@ -1,0 +1,84 @@
+/* This page will only maintain styles for dashboard */
+#dashboard{
+    min-height: 100vh;
+    background-color: var(--bg-beige);
+}
+
+.tour-card{
+    width: 250px;
+    height:350px ;
+    position: relative;
+    border-radius: 12px;
+    margin: .5em 1.5em;
+    display:inline-block;
+    transition: box-shadow 300ms ease-out;
+    background-image: url('https://travellersworldwide.com/wp-content/uploads/2022/06/shutterstock_712575202.jpg.webp');
+    background-size: cover;
+
+}
+
+.card-overlay{
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: 12px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.822) 20%, transparent 80%);
+    transition: background 400ms ease-in-out;
+}
+
+.over-1{
+    position: relative;
+    z-index: 1;
+}
+
+.host-name{
+    font-family: var(--secondary-font);
+    font-weight: 900;
+    font-size: 1rem;
+    margin: 0;
+    padding: 1em .5em;
+    color: var(--dark-purple);
+}
+
+.card-details{
+    padding-left: .5em;
+    height: 35%;
+}
+
+.tour-name{
+    font-family: var(--primary-font-bold);
+    font-weight: 900;
+    font-size: 2rem;
+    /* padding: 1em; */
+    color: var(--bg-yellow);
+}
+
+.team{
+    font-family: Verdana, Geneva, Tahoma, sans-serif, Courier, monospace;
+    font-weight: 500;
+    font-size: 1rem;
+    display: inline-block;
+    margin-top: .5em;
+    color: var(--bg-beige);
+}
+
+.team::after{
+    content: "";
+    background-image: url('../img/icons/team.png');
+    background-size: 25px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 30px;
+    height: 15px;
+    margin-left: .5em;
+}
+
+.tour-date{
+    font-family: var(--secondary-font);
+    font-weight: 500;
+    font-size: 1rem;
+    display: inline-block;
+    margin-top: .5em;
+    color: var(--bg-beige);
+}
+
