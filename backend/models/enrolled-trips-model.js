@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 
 const EnrolledTripsSchema = new mongoose.Schema({
-	user_id: {
+	userId: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "User",
 		required: true,
 	},
-	trip_id: {
+	tripId: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "Trip",
 		required: true,
