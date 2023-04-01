@@ -6,4 +6,4 @@ const imagekit = new ImageKit({
 	urlEndpoint: "https://ik.imagekit.io/fy9xpsxsm",
 });
 
-modules.exports = imagekit;
+module.exports = imagekit;
