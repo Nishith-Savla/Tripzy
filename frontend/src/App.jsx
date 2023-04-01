@@ -1,13 +1,13 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "./App.css";
-import Signup from "./components/signup";
-import AuthProvider from "./context/auth";
-import "./css/palette.css";
 import AddActivities from "./components/AddActivities";
 import EditTrip from "./components/EditTrip";
 import Home from "./components/Home";
-import { QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-query";
+import Signup from "./components/signup";
+import AuthProvider from "./context/auth";
+import "./css/palette.css";
 
 const queryClient = new QueryClient();
 
