@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import { loginWithGoogle } from "../services/firebase";
+import { loginWithGoogle } from "../firebase/firebase.js";
 import { postUser } from "../api/user";
 
 const AuthContext = createContext();
@@ -25,7 +25,14 @@ const AuthProvider = (props) => {
 
 	const value = { user, login };
 
-	return <AuthContext.Provider value={value} {...props} />;
+	return (
+		<AuthContext.Provider
+			value={value}
+			{...props}
+		>
+			{props.children}
+		</AuthContext.Provider>
+	);
 };
 
 export const useAuth = useContext(AuthContext);

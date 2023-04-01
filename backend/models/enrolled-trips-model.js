@@ -17,4 +17,4 @@ const EnrolledTripsSchema = new mongoose.Schema({
 	},
 });
 
-modules.exports = mongoose.model("EnrolledTrips", EnrolledTripsSchema);
+module.exports = mongoose.model("EnrolledTrips", EnrolledTripsSchema);
