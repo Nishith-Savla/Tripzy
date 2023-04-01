@@ -1,0 +1,42 @@
+/* This page will only maintain styles for login-page */
+
+#login-page{
+    min-height: 100vh;
+    background-color: var(--bg-beige);
+}
+
+.vertical-line{
+    background-color: var(--dark-purple);
+    width: 4px;
+    height: 77vh;
+}
+
+.input-container{
+    width: 70%;
+}
+
+input[type="text"], input[type="password"]{
+    width: 100%;
+    padding: .5em;
+    margin: 0.5em 0;
+    border: 1px solid var(--light-cyan);
+    font-family: var(--para-font);
+    border-radius: 5px;
+    font-size: 1.5rem;
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px; 
+    transition: border 250ms ease-in-out;
+}
+
+input:focus{
+    outline: none;
+    border: 5px solid var(--light-cyan);
+}
+
+input::placeholder{
+    transition: transform 500ms ease, opacity 500ms ease;
+}
+
+input:focus::placeholder{
+    transform: translate(50%);
+    opacity: 0;
+}

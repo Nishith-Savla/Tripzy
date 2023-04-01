@@ -1,0 +1,74 @@
+@font-face {
+    font-family: 'Philosopher-Reg';
+    src: url('../assets/fonts/Philosopher/Philosopher-Regular.ttf');
+    /* 
+    font-family: 'Philosopher-Ital';
+    src: url('../fonts/Philosopher/Philosopher-Italic.ttf'); */
+}
+@font-face {
+    font-family: 'Philosopher-Bold';
+    src: url('../assets/fonts/Philosopher/Philosopher-Bold.ttf');
+}
+@font-face {
+    font-family: 'SalmaPro';
+    src: url('../assets/fonts/SalmaPro/SalmaPro-Medium.otf');
+    /* font-family: 'SalmaPro-Narr';
+    src: url('../fonts/SalmaPro/SalmaPro-MediumNarrow.otf'); */
+
+}
+@font-face {
+    font-family: 'SimplyMono';
+    src: url('../assets/fonts/SimplyMono/SimplyMono-Book.ttf');
+    /* font-family: 'SimplyMono-Ital';
+    src: url('../fonts/SimplyMono/SimplyMono-BookOblique.ttf'); */
+}
+@font-face {
+    font-family: 'RobotoSlab';
+    src: url('../assets/fonts/RobotoSlab.ttf');
+}
+
+
+:root{
+    /* Color scheme */
+    --dark-purple : #4D455D;
+    --dark-purple-blur : #4d455d85;
+    --sky-pink : #E96479;
+    --bg-beige : #F5E9CF;
+    --bg-yellow : #FBFFB1;
+    --light-cyan : #7DB9B6;
+    --orange : #FC7300;
+    --florecent : #BFDB38;
+    --dark-florecent : #1F8A70;
+    --light-pink : #FFACAC;
+    --dark-blue : #002B5B;
+    /* font families */
+
+    --primary-font : 'Philosopher-Reg';
+    --primary-font-bold : 'Philosopher-Bold';
+    --secondary-font : 'SalmaPro';
+    --para-font : 'RobotoSlab';
+    --title-font : 'SimplyMono';
+} 
+
+.primary-font{
+    font-family: var(--primary-font);
+}
+.primary-font-bold{
+    font-family: var(--primary-font-bold);
+}
+
+.secondary-font{
+    font-family: var(--secondary-font);
+}
+
+.para-font{
+    font-family: var(--para-font);
+}
+
+.title-font{
+    font-family: var(--title-font);
+}
+
+.dark-purple{
+    color: var(--dark-purple);
+}

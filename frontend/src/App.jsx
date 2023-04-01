@@ -1,22 +1,18 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
-import { loginWithGoogle } from "./utils/firebase";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Signup from "./components/signup";
+import "./css/palette.css"
+
 
 function App() {
-	return (
-		<div>
-			<button
-				onClick={async () => {
-					const res = await loginWithGoogle();
-					console.log(res);
-				}}
-			>
-				GOogle sign in
-			</button>
-		</div>
-	);
+  return (
+    <div>
+      <Router>
+        <Routes>
+          <Route path="/signin" element={<Signup/>} />
+        </Routes>
+      </Router>
+    </div>
+  );
 }
 
 export default App;
