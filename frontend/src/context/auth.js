@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
 import { loginWithGoogle } from "../services/firebase";
+import { postUser } from "../api/user";
 
 const AuthContext = createContext();
 
@@ -13,8 +14,12 @@ const AuthProvider = (props) => {
 			if (error.code !== "auth/cancelled-popup-request") {
 				notify(error.message, "error");
 			}
+			return;
 		}
 
+		const { id } = await postUser({ token });
+
+		user.id = id;
 		setUser(user);
 	};
 
