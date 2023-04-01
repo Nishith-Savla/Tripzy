@@ -1,18 +1,23 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "./App.css";
 import Signup from "./components/signup";
-import "./css/palette.css"
-
+import AuthProvider from "./context/auth";
+import "./css/palette.css";
 
 function App() {
-  return (
-    <div>
-      <Router>
-        <Routes>
-          <Route path="/signin" element={<Signup/>} />
-        </Routes>
-      </Router>
-    </div>
-  );
+	return (
+		<>
+			<AuthProvider>
+				<Router>
+					<Routes>
+						<Route path="/signin" element={<Signup />} />
+					</Routes>
+				</Router>
+			</AuthProvider>
+			<ToastContainer />
+		</>
+	);
 }
 
 export default App;
