@@ -7,10 +7,11 @@ exports.store_user_in_mongodb = async (req, res, next) => {
 		const { token } = req.body;
 
 		const decodeValue = await admin.auth().verifyIdToken(token);
+		console.log(decodeValue);
 
 		if (decodeValue) {
-			const prev_user = User.findOne({ email: decodeValue.email });
-			// console.log(prev_user);
+			const prev_user = await User.findOne({ email: decodeValue.email });
+			console.log(prev_user);
 			if (prev_user) {
 				return next(new AppError("User already exists", 400));
 			}
@@ -27,8 +28,7 @@ exports.store_user_in_mongodb = async (req, res, next) => {
 			return res.status(200).json({
 				status: "success",
 				data: {
-					user: user_obj,
-					id: user_obj.inserted_id,
+					id: user_obj["_id"],
 				},
 			});
 		}
