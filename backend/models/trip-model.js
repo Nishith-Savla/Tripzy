@@ -37,6 +37,10 @@ const tripSchema = new mongoose.Schema({
     type: mongoose.Schema.ObjectId,
     ref: "Itinerary",
   },
+  price: {
+    type: Number,
+    required: [true, "Please provide the trip price."],
+  },
 });
 
 const Trip = mongoose.model("Trip", tripSchema);
