@@ -12,24 +12,13 @@ function App() {
 	return (
 		<>
 			<AuthProvider>
+				<Navbar />
 				<Router>
 					<Routes>
-						<Route
-							path="/signin"
-							element={<Signup />}
-						/>
-						<Route
-							path="/addActivity"
-							element={<AddActivities />}
-						/>
-						<Route
-							path="/"
-							element={<Home />}
-						/>
-						<Route
-							path="/createTrip"
-							element={<CreateTrip />}
-						/>
+						<Route path="/signin" element={<Signup />} />
+						<Route path="/addActivity" element={<AddActivities />} />
+						<Route path="/" element={<Dashboard />} />
+						<Route path="/createTrip" element={<CreateTrip />} />
 					</Routes>
 				</Router>
 			</AuthProvider>
