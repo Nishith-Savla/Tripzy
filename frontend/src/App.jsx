@@ -9,22 +9,33 @@ import AuthProvider from "./context/auth";
 import "./css/palette.css";
 
 function App() {
-  return (
-    <>
-      <AuthProvider>
-        <Router>
-          <Navbar />
-          <Routes>
-            <Route path="/signin" element={<Signup />} />
-            <Route path="/addActivity" element={<AddActivities />} />
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/createTrip" element={<CreateTrip />} />
-          </Routes>
-        </Router>
-      </AuthProvider>
-      <ToastContainer />
-    </>
-  );
+	return (
+		<>
+			<AuthProvider>
+				<Router>
+					<Routes>
+						<Route
+							path="/signin"
+							element={<Signup />}
+						/>
+						<Route
+							path="/addActivity"
+							element={<AddActivities />}
+						/>
+						<Route
+							path="/"
+							element={<Home />}
+						/>
+						<Route
+							path="/createTrip"
+							element={<CreateTrip />}
+						/>
+					</Routes>
+				</Router>
+			</AuthProvider>
+			<ToastContainer />
+		</>
+	);
 }
 
 export default App;

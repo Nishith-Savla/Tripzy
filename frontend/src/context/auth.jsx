@@ -25,7 +25,14 @@ const AuthProvider = (props) => {
 
 	const value = { user, login };
 
-	return <AuthContext.Provider value={value} {...props} />;
+	return (
+		<AuthContext.Provider
+			value={value}
+			{...props}
+		>
+			{props.children}
+		</AuthContext.Provider>
+	);
 };
 
 export const useAuth = () => useContext(AuthContext);

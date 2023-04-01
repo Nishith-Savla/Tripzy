@@ -5,6 +5,7 @@ const cors = require("cors");
 const errorController = require("./controllers/error-controller");
 const tripRouter = require("./routes/trip-route");
 const userRouter = require("./routes/user-route");
+const EnrolledTripsRouter = require("./routes/enrolled-trips-route");
 
 const AppError = require("./utils/app-error");
 
@@ -24,8 +25,9 @@ if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
 app.use("/api/auth", userRouter);
 app.use("/api/trips", tripRouter);
 
+app.use("/api/enrolledTrips", EnrolledTripsRouter);
 app.all("*", (req, res, next) => {
-  next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
+	next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
 });
 
 // global error handler
