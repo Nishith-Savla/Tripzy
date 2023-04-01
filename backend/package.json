@@ -5,11 +5,16 @@
   "main": "server.js",
   "repository": "https://github.com/Nishith-Savla/Tripzy.git",
   "author": "tripzy",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "NODE_ENV=production node server.js"
+  },
   "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "mongoose": "^7.0.3",
+    "mongoose": "5",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
