@@ -13,8 +13,8 @@ function App() {
 	return (
 		<>
 			<AuthProvider>
-				<Navbar />
 				<Router>
+					<Navbar />
 					<Routes>
 						<Route path="/signin" element={<Signup />} />
 						<Route path="/addActivity" element={<AddActivities />} />
