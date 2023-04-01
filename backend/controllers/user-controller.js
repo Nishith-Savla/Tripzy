@@ -1,41 +1,61 @@
 const User = require("../models/user-model");
 const AppError = require("../utils/app-error");
+const catchAsync = require("../utils/catch-async");
 const admin = require("../config/firebase-config");
 
-exports.store_user_in_mongodb = async (req, res, next) => {
-	try {
-		const { token } = req.body;
+exports.protect = catchAsync(async (req, res, next) => {
+  if (!req.headers.authorization) {
+    return next(new AppError("Please sign in to continue", 401));
+  }
 
-		const decodeValue = await admin.auth().verifyIdToken(token);
-		console.log(decodeValue);
+  const token = req.headers.authorization.split(" ")[1];
 
-		if (decodeValue) {
-			const prev_user = await User.findOne({ email: decodeValue.email });
-			console.log(prev_user);
-			if (prev_user) {
-				return next(new AppError("User already exists", 400));
-			}
+  const decodeValue = await admin.auth().verifyIdToken(token);
+  if (!decodeValue) {
+    res
+      .status(403)
+      .json({
+        status: "fail",
+        message: "Access token invalid! Please login again.",
+      });
+  }
 
-			const user_obj = await User.create({
-				name: decodeValue.name,
-				email: decodeValue.email,
-				phoneNumber: null,
-				photo: decodeValue.picture,
-				totalRatings: 0,
-				ratingsCount: 0,
-			});
+  const user = await User.findOne({ email: decodeValue.email });
+  req.user = user;
+  return next();
+});
 
-			return res.status(200).json({
-				status: "success",
-				data: {
-					id: user_obj["_id"],
-				},
-			});
-		}
+exports.createUser = catchAsync(async (req, res, next) => {
+  const { token } = req.body;
 
-		res.send("User created successfully");
-	} catch (error) {
-		console.log(error);
-		res.status(400).send("Some error occured");
-	}
-};
+  const decodeValue = await admin.auth().verifyIdToken(token);
+  console.log(decodeValue);
+
+  if (decodeValue) {
+    const user = await User.findOne({ email: decodeValue.email });
+    if (user) {
+      return res.status(200).json({
+        status: "success",
+        data: {
+          id: user._id,
+        },
+      });
+    }
+
+    const newUser = await User.create({
+      name: decodeValue.name,
+      email: decodeValue.email,
+      phoneNumber: null,
+      photo: decodeValue.picture,
+      totalRatings: 0,
+      ratingsCount: 0,
+    });
+
+    res.status(200).json({
+      status: "success",
+      data: {
+        id: newUser["_id"],
+      },
+    });
+  }
+});
