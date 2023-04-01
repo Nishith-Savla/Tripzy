@@ -36,7 +36,6 @@ const tripSchema = new mongoose.Schema({
   itinerary: {
     type: mongoose.Schema.ObjectId,
     ref: "Itinerary",
-    required: [true, "Please provide the Id for itinerary."],
   },
 });
 
