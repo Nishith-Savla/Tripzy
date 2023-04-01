@@ -6,6 +6,7 @@ export async function decodeToken(req, res, next) {
 		const decodeValue = await admin.auth().verifyIdToken(token);
 		if (decodeValue) {
 			console.log(decodeValue);
+			req.decodeToken = decodeValue;
 			return next();
 		}
 		return res.json({ message: "Unauthorized" });
