@@ -8,8 +8,6 @@ import { AuthContext, useAuth } from "../context/auth";
 import "../css/signin.css";
 import "../css/style.css";
 import "../css/util.css";
-import Navbar from "./navbar";
-import { useNavigate } from "react-router-dom";
 
 function Signup() {
 	const auth = useAuth();
