@@ -1,21 +1,12 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { ToastContainer } from "react-toastify";
 import "./App.css";
-import { loginWithGoogle } from "./utils/firebase";
+import AuthProvider from "./context/auth";
 
 function App() {
 	return (
-		<div>
-			<button
-				onClick={async () => {
-					const res = await loginWithGoogle();
-					console.log(res);
-				}}
-			>
-				GOogle sign in
-			</button>
-		</div>
+		<AuthProvider>
+			<ToastContainer />
+		</AuthProvider>
 	);
 }
 
