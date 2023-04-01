@@ -1,9 +1,10 @@
 const router = require("express").Router();
 const tripController = require("../controllers/trip-controller");
+const userController = require("../controllers/user-controller");
 
 router
   .route("/")
-  .post(tripController.createTrip)
+  .post(userController.protect, tripController.createTrip)
   .get(tripController.getAllTrips);
 
 router.route("/search").get(tripController.getTripsByName);
@@ -11,7 +12,7 @@ router.route("/search").get(tripController.getTripsByName);
 router
   .route("/:id")
   .get(tripController.getTripById)
-  .patch(tripController.updateTrip)
-  .delete(tripController.deleteTrip);
+  .patch(userController.protect, tripController.updateTrip)
+  .delete(userController.protect, tripController.deleteTrip);
 
 module.exports = router;

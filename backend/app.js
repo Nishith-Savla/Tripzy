@@ -4,6 +4,8 @@ const cors = require("cors");
 
 const errorController = require("./controllers/error-controller");
 const tripRouter = require("./routes/trip-route");
+const userRouter = require("./routes/user-route");
+
 const AppError = require("./utils/app-error");
 
 const decodeToken = require("./middlewares/index");
@@ -22,11 +24,8 @@ app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 
 if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
 
-app.get("/", (req, res) => {
-	res.send("Hello World");
-});
-app.use("/auth", userRouter);
 // routes
+app.use("/api/auth", userRouter);
 app.use("/api/trips", tripRouter);
 
 app.use("/enrolled-trips", decodeToken, EnrolledTripsRouter);
