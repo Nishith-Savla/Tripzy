@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
+const Activity = require("./activity-model");
 
 const itinerarySchema = new mongoose.Schema({
   activities: {
-    type: [mongoose.Schema.ObjectId],
+    type: [Activity],
     required: [true, "Please provide list of activities."],
   },
   startDate: {
