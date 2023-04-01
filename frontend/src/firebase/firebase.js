@@ -1,11 +1,11 @@
-import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
+
+const provider = new GoogleAuthProvider();
+provider.addScope("https://www.googleapis.com/auth/contacts.readonly");
+export const auth = getAuth();
 
 export const loginWithGoogle = async () => {
 	try {
-		const provider = new GoogleAuthProvider();
-		provider.addScope("https://www.googleapis.com/auth/contacts.readonly");
-		const auth = getAuth();
-
 		const response = await signInWithPopup(auth, provider);
 
 		const user = response.user;
@@ -13,4 +13,8 @@ export const loginWithGoogle = async () => {
 	} catch (error) {
 		return { error };
 	}
+};
+
+export const logOut = async () => {
+	signOut(auth);
 };
