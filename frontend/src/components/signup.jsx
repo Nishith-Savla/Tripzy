@@ -14,7 +14,6 @@ function Signup() {
 
   return (
     <section id="login-page">
-      <Navbar />
       <div className="d-flex justify-content-between p-5 container">
         <div className="fb-48 d-flex justify-content-center mt-5">
           {/* The carousel part */}

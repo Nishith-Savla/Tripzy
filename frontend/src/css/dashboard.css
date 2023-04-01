@@ -12,7 +12,7 @@
     margin: .5em 1.5em;
     display:inline-block;
     transition: box-shadow 300ms ease-out;
-    background-image: url('https://travellersworldwide.com/wp-content/uploads/2022/06/shutterstock_712575202.jpg.webp');
+    /* background-image: url('https://travellersworldwide.com/wp-content/uploads/2022/06/shutterstock_712575202.jpg.webp'); */
     background-size: cover;
 
 }
@@ -64,7 +64,7 @@
 
 .team::after{
     content: "";
-    background-image: url('../img/icons/team.png');
+    background-image: url('../assets/icons/team.png');
     background-size: 25px;
     background-repeat: no-repeat;
     display: inline-block;
