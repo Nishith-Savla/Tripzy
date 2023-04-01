@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const activitySchema = new mongoose.Schema({
+const ActivitySchema = new mongoose.Schema({
   title: {
     type: String,
     required: [true, "Please enter a title for activity."],
@@ -32,6 +32,6 @@ const activitySchema = new mongoose.Schema({
   },
 });
 
-const Activity = mongoose.model("Activity", activitySchema);
+const Activity = mongoose.model("Activity", ActivitySchema);
 
-module.exports = Activity;
+module.exports = { Activity, ActivitySchema };
