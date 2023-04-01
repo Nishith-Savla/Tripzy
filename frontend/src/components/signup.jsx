@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import searchImage from "../assets/icons/search.png";
 import img1 from "../assets/images/img1.jpeg";
 import img2 from "../assets/images/img2.jpg";
@@ -7,7 +8,7 @@ import { AuthContext, useAuth } from "../context/auth";
 import "../css/signin.css";
 import "../css/style.css";
 import "../css/util.css";
-import Navbar from "./Navbar";
+import Navbar from "./navbar";
 import { useNavigate } from "react-router-dom";
 
 function Signup() {

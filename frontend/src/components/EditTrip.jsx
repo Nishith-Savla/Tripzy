@@ -1,8 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
+import { QueryClient, useMutation, useQuery } from "@tanstack/react-query";
 import { useEffect, useRef } from "react";
+import { createTrip, getTrip, updateTrip } from "../api/trips";
 import "../css/CreateTrip.css";
+import { formatDate } from "../utils";
 import Navbar from "./navbar";
-import { getTrip } from "../api/trips";
+
+const queryClient = new QueryClient();
 
 function EditTrip({ id }) {
 	const tripQuery = useQuery({
@@ -10,16 +13,26 @@ function EditTrip({ id }) {
 		queryFn: () => getTrip(id),
 	});
 
+	const editTripMutation = useMutation({
+		mutationFn: (data) => {
+			if (id) return updateTrip(id, data);
+			else return createTrip();
+		},
+		onSuccess: () => {
+			queryClient.invalidateQueries(["trips"]);
+		},
+	});
+
 	const formRef = useRef();
 
 	useEffect(() => {
 		if (tripQuery.data) {
-			const { title, description, startDate, endDate, mapUrl } = tripQuery.data;
+			const { title, description, startDate, endDate, mapUrl } = tripQuery.data.data;
 
 			formRef.current.title.value = title ?? "";
 			formRef.current.description.value = description ?? "";
-			formRef.current.startDate.value = startDate ?? Date.now();
-			formRef.current.endDate.value = endDate ?? Date.now();
+			formRef.current.startDate.value = formatDate(startDate ?? Date.now());
+			formRef.current.endDate.value = formatDate(endDate ?? Date.now());
 			formRef.current.mapUrl.value = mapUrl ?? "";
 		}
 	}, [tripQuery.data]);
@@ -30,6 +43,7 @@ function EditTrip({ id }) {
 		e.preventDefault();
 		const formData = new FormData(formRef.current);
 		const data = Object.fromEntries(formData);
+		editTripMutation.mutate(data);
 	};
 
 	return (
