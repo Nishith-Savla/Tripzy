@@ -13,5 +13,14 @@ export const notify = (message, type) => {
 
 export const axiosInstance = axios.create({
 	baseURL: import.meta.env.VITE_backendURL,
+	headers: {
+		"ngrok-skip-browser-warning": true,
+    Authorization : `Bearer ${localStorage.getItem("access_token")}`
+	},
 	// timeout: 1000,
 });
+
+// format in yyyy-MM-dd
+export const formatDate = (date) => {
+	return new Date(date).toISOString().slice(0, 10);
+};

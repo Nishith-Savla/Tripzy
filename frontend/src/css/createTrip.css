@@ -1,63 +1,65 @@
 /* This file will contain styles for the create trip form */
 
-#create-trip{
-    min-height: 100vh;
-    background-color: var(--bg-beige);
+#create-trip {
+	min-height: 100vh;
+	background-color: var(--bg-beige);
 }
 
-.trip-title{
-    font-family: var(--secondary-font);
-    font-size: 3rem;
-    letter-spacing: 1mm;
-    text-align: center;
-    margin: 1em 0;
-    color: var(--dark-purple);
-    text-shadow: 0px 0px 5px rgba(77, 69, 93, 0.75);
+.trip-title {
+	font-family: var(--secondary-font);
+	font-size: 3rem;
+	letter-spacing: 1mm;
+	text-align: center;
+	margin: 1em 0;
+	color: var(--dark-purple);
+	text-shadow: 0px 0px 5px rgba(77, 69, 93, 0.75);
 }
 
-.input-container{
-    display: flex;
-    flex-direction: column;
-    /* justify-content: center; */
-    align-items: stretch;
-    width: 70%;
+.input-container {
+	display: flex;
+	flex-direction: column;
+	/* justify-content: center; */
+	align-items: stretch;
+	width: 70%;
 }
 
-input, textarea{
-    width: 100%;
-    padding: .5em;
-    margin: 0.5em 0;
-    border: 1px solid var(--light-cyan);
-    font-family: var(--para-font);
-    border-radius: 5px;
-    font-size: 1.5rem;
-    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px; 
-    transition: border 250ms ease-in-out;
-    background-color: whitesmoke;
+input,
+textarea {
+	width: 100%;
+	padding: 0.5em;
+	margin: 0.5em 0;
+	border: 1px solid var(--light-cyan);
+	font-family: var(--para-font);
+	border-radius: 5px;
+	font-size: 1.5rem;
+	transition: border 250ms ease-in-out;
+	background-color: whitesmoke;
 }
-textarea{
-    resize: vertical;
-}
-
-input:focus, textarea:focus{
-    outline: none;
-    border: 3px solid var(--light-cyan);
+textarea {
+	resize: vertical;
 }
 
-input[type='text']::placeholder, textarea::placeholder{
-    transition: transform 500ms ease, opacity 500ms ease;
+input:focus,
+textarea:focus {
+	outline: none;
+	border: 3px solid var(--light-cyan);
 }
 
-input[type='text']:focus::placeholder{
-    transform: translate(50%);
-    opacity: 0;
+input[type="text"]::placeholder,
+textarea::placeholder {
+	transition: transform 500ms ease, opacity 500ms ease;
 }
 
-.input-label{
-    font-family: var(--secondary-font);
-    font-size: 1.5rem;
-    font-weight: 700;
-    letter-spacing: 1mm;
-    color: var(--dark-purple);
-    text-shadow: 0px 0px 5px rgba(77, 69, 93, 0.75);
+input[type="text"]:focus::placeholder {
+	transform: translate(50%);
+	opacity: 0;
+}
+
+.input-label {
+	font-family: var(--secondary-font);
+	font-size: 1.5rem;
+	font-weight: 700;
+	letter-spacing: 1mm;
+	color: var(--dark-purple);
+	text-shadow: 0px 0px 5px rgba(77, 69, 93, 0.75);
 }
