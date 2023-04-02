@@ -4,6 +4,7 @@ import "../css/dashboard.css";
 import { getEnrolledTrips, getTrips } from "../api/trips";
 import { useQuery } from "@tanstack/react-query";
 import { formatDate } from "../utils";
+import { NavLink } from "react-router-dom";
 
 function Dashboard() {
 	const allTripsQuery = useQuery({
@@ -21,7 +22,6 @@ function Dashboard() {
 		return <div>Loading...</div>;
 	}
 
-	console.log(allTripsQuery.data);
 	const { data: allTrips } = allTripsQuery.data;
 	const enrolledTripsQueryData = enrolledTripsQuery.data;
 	let enrolledTrips = null;
@@ -31,50 +31,54 @@ function Dashboard() {
 
 	return (
 		<div id="dashboard">
-			<div>
-				<h1>All trips</h1>
-				<div
-					style={{
-						display: "grid",
-						gridTemplateColumns: "repeat(3, 1fr)",
-					}}
-				>
-					{enrolledTrips?.length !== 0
-						? enrolledTrips?.map((trip) => {
-								return (
-									<Card
-										key={trip._id}
-										title={trip.title}
-										createdBy={trip.createdBy}
-										startDate={formatDate(trip.startDate)}
-										endDate={formatDate(trip.endDate)}
-										memberCount={trip.memberCount}
-										coverImage={trip.coverImage}
-									/>
-								);
-						  })
-						: null}
+			{enrolledTrips?.length ? (
+				<div>
+					<h3 style={{ alignContent: "center" }}>Your trips</h3>
+					<div
+						style={{
+							display: "grid",
+							gridTemplateColumns: "repeat(3, 1fr)",
+						}}
+					>
+						{enrolledTrips
+							? enrolledTrips.map((trip) => {
+									return (
+										<Card
+											key={trip._id}
+											title={trip.title}
+											createdBy={trip.createdBy}
+											startDate={formatDate(trip.startDate)}
+											endDate={formatDate(trip.endDate)}
+											memberCount={trip.memberCount}
+											coverImage={trip.coverImage}
+										/>
+									);
+							  })
+							: null}
+					</div>
 				</div>
-			</div>
+			) : null}
 			<div>
-				<h1>All trips</h1>
+				<h3>All trips</h3>
 				<div
 					style={{
 						display: "grid",
 						gridTemplateColumns: "repeat(3, 1fr)",
 					}}
 				>
-					{allTrips.map((trip) => {
+					{allTrips?.map((trip) => {
 						return (
-							<Card
-								key={trip._id}
-								title={trip.title}
-								createdBy={trip.createdBy}
-								startDate={formatDate(trip.startDate)}
-								endDate={formatDate(trip.endDate)}
-								memberCount={trip.memberCount}
-								coverImage={trip.coverImage}
-							/>
+							<NavLink to={`/trips/${trip._id}`}>
+								<Card
+									key={trip._id}
+									title={trip.title}
+									createdBy={trip.createdBy}
+									startDate={formatDate(trip.startDate)}
+									endDate={formatDate(trip.endDate)}
+									memberCount={trip.memberCount}
+									coverImage={trip.coverImage}
+								/>
+							</NavLink>
 						);
 					})}
 				</div>
