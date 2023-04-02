@@ -9,9 +9,7 @@ exports.getAllEnrolledTrips = catchAsync(async (req, res, next) => {
 
 	res.status(200).json({
 		status: "success",
-		data: {
-			enrolled_trips,
-		},
+		data: enrolled_trips,
 	});
 });
 

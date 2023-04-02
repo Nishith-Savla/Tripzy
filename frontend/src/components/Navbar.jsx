@@ -53,23 +53,30 @@ function Navbar() {
 	const Display = (props) => {
 		if (user) {
 			return (
-				<button
-					type="button"
+				<div
 					style={{
-						padding: "5px 20px",
-						color: "#000",
-						backgroundColor: "#f1a90d",
-						height: "50px",
-						fontSize: "24px",
-						marginTop: "5px",
-						marginLeft: "10px",
-					}}
-					onClick={() => {
-						logOut();
+						display: "flex",
 					}}
 				>
-					Logout
-				</button>
+					<CoinChip coins={user?.coins || 23} />
+					<button
+						type="button"
+						style={{
+							padding: "5px 20px",
+							color: "#000",
+							backgroundColor: "#f1a90d",
+							height: "50px",
+							fontSize: "24px",
+							marginTop: "5px",
+							marginLeft: "10px",
+						}}
+						onClick={() => {
+							logOut();
+						}}
+					>
+						Logout
+					</button>
+				</div>
 			);
 		}
 	};
@@ -103,7 +110,6 @@ function Navbar() {
 					style={{ width: "500px", margin: "10px 30px 0px 10px" }}
 				/>
 
-				<CoinChip coins={user?.coins || 23} />
 				{/* <button
 					style={{
 						padding: "5px 20px",
