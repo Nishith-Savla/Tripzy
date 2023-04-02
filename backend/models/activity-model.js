@@ -9,10 +9,6 @@ const ActivitySchema = new mongoose.Schema({
     type: String,
     required: [true, "Please enter a description for activity."],
   },
-  imageUrl: {
-    type: String,
-    required: [true, "Please enter a image url for activity."],
-  },
   startTime: {
     type: Date,
     required: [true, "Please enter a start time for activity."],
