@@ -16,6 +16,14 @@ import {
 	Itinerary,
 	Day,
 	Activity,
+	Activities,
+	ActivityImage,
+	ActivityDescription,
+	ActivityTitle,
+	ActivityDate,
+	ActivityFlex,
+	MapLink,
+	Span,
 } from "./components";
 
 const SingleTrip = () => {
@@ -58,20 +66,30 @@ const SingleTrip = () => {
 				<Title color="#000">Itinerary</Title>
 				<Day>
 					<Heading font-size="20px">Day 1</Heading>
-					<Activity>activity 1</Activity>
-					<Activity>activity 1</Activity>
-
-					<Activity>activity 1</Activity>
-					<Activity>activity 1</Activity>
-					<Activity>activity 1</Activity>
-					<Activity>activity 1</Activity>
-
-					<Activity>activity 1</Activity>
-				</Day>
-				<Day>
-					<Heading font-size="20px">Day 2</Heading>
-					<Activity>activity 1</Activity>
-					<Activity>activity 1</Activity>
+					<Activities>
+						<Activity></Activity>
+						<Activity>
+							<Flex>
+								<ActivityDate>
+									Start <Span>03-03-2023</Span>
+								</ActivityDate>
+								<ActivityDate>
+									End <Span>05-03-2023</Span>
+								</ActivityDate>
+							</Flex>
+							<Flex gap="10px">
+								<ActivityImage src="https://images.unsplash.com/photo-1543731068-7e0f5beff43a" />
+								<ActivityFlex>
+									<ActivityTitle>Activity Title</ActivityTitle>
+									<ActivityDescription>
+										Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos facere iure
+										eligendi!
+									</ActivityDescription>
+								</ActivityFlex>
+							</Flex>
+							<MapLink href="https://maps.google.com/">Open in Map</MapLink>
+						</Activity>
+					</Activities>
 				</Day>
 			</Itinerary>
 		</>

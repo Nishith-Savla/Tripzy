@@ -67,11 +67,6 @@ export const Day = styled.div`
 	background-color: #f5e9cf80;
 `;
 
-export const Activity = styled.li`
-	margin-left: 40px;
-	background-color: #f5e9cf;
-`;
-
 export const Cards = styled.div`
 	display: flex;
 	flex-direction: row;
@@ -96,7 +91,7 @@ export const Flex = styled.div`
 	align-items: center;
 	background-color: ${(props) => props.bgColor || "#fbffb180"};
 	flex-direction: ${(props) => props.flexDirection || "row"};
-	gap: 5px;
+	gap: ${(props) => props.gap || "5px"};
 `;
 
 export const Box = styled.h4`
@@ -119,10 +114,29 @@ export const Button = styled.button`
 	font-size: 24px;
 `;
 
+export const Activities = styled.section`
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 20px;
+`;
+
+export const Activity = styled.div`
+	margin-left: 40px;
+	background-color: #f5e9cf;
+	padding: 10px;
+`;
+
 export const ActivityImage = styled.img`
 	height: 100px;
 	width: 100px;
 	border-radius: 5px;
+`;
+
+export const ActivityFlex = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 10px;
 `;
 
 export const ActivityTitle = styled.h4`
@@ -135,4 +149,29 @@ export const ActivityDescription = styled.p`
 	font-size: 16px;
 	font-weight: 400;
 	color: #555;
+`;
+
+export const ActivityDate = styled.p`
+	font-size: 18px;
+	font-weight: 00;
+	background-color: #4d455d;
+	color: #fff;
+	padding: 10px;
+	border-radius: 5px;
+`;
+
+export const Span = styled.span`
+	font-size: 16px;
+	font-weight: 500;
+	color: #333;
+	background-color: #fff;
+	padding: 5px;
+	border-radius: 5px;
+	margin-left: 10px;
+`;
+
+export const MapLink = styled.a`
+	font-size: 16px;
+	font-weight: 400;
+	color: #5611df;
 `;
