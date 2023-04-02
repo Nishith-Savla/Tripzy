@@ -1,6 +1,6 @@
 /* This file will contain styles for the create trip form */
 
-#create-trip {
+#create-trip, #add-activity {
 	min-height: 100vh;
 	background-color: var(--bg-beige);
 }
