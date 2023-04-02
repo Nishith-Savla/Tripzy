@@ -115,3 +115,15 @@ exports.deleteTrip = catchAsync(async (req, res, next) => {
 		status: "success",
 	});
 });
+
+exports.myTrips = catchAsync(async (req, res, next) => {
+	const trips = await Trip.find({ createdBy: req.user._id }).populate(
+		"createdBy"
+	);
+
+	res.status(200).json({
+		status: "success",
+		results: trips.length,
+		data: trips,
+	});
+});
