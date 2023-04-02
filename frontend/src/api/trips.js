@@ -4,6 +4,10 @@ export function getTrips() {
 	return axiosInstance.get("/trips").then((res) => res.data);
 }
 
+export function getEnrolledTrips() {
+	return axiosInstance.get("/enrolledTrips").then((res) => res.data);
+}
+
 export function getTrip(id) {
 	return axiosInstance.get(`trips/${id}`).then((res) => res.data);
 }

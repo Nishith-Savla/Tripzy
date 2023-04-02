@@ -1,28 +1,87 @@
 import React from "react";
 import Card from "./card";
 import "../css/dashboard.css";
+import { getEnrolledTrips, getTrips } from "../api/trips";
+import { useQuery } from "@tanstack/react-query";
+import { formatDate } from "../utils";
+import { NavLink } from "react-router-dom";
 
 function Dashboard() {
+	const allTripsQuery = useQuery({
+		queryKey: ["trips"],
+		queryFn: getTrips,
+	});
+
+	const enrolledTripsQuery = useQuery({
+		queryKey: ["trips", localStorage.getItem("access_token")],
+		enabled: allTripsQuery.data !== undefined,
+		queryFn: getEnrolledTrips,
+	});
+
+	if (allTripsQuery.isLoading && allTripsQuery.fetchStatus !== "idle") {
+		return <div>Loading...</div>;
+	}
+
+	const { data: allTrips } = allTripsQuery.data;
+	const enrolledTripsQueryData = enrolledTripsQuery.data;
+	let enrolledTrips = null;
+	if (enrolledTripsQueryData) {
+		enrolledTrips = enrolledTripsQueryData.data;
+	}
+
 	return (
 		<div id="dashboard">
-			<h1>My trips</h1>
-
-			<div
-				style={{
-					display: "grid",
-					gridTemplateColumns: "repeat(4, 1fr)",
-				}}
-			>
-				<Card
-					title="Span"
-					createdBy="Aayush Patel"
-					startDate="23"
-					endDate="24"
-					memberCount={12}
-					coverImage={[
-						"https://travellersworldwide.com/wp-content/uploads/2022/06/shutterstock_712575202.jpg.webp",
-					]}
-				/>
+			{enrolledTrips?.length ? (
+				<div>
+					<h3 style={{ alignContent: "center" }}>Your trips</h3>
+					<div
+						style={{
+							display: "grid",
+							gridTemplateColumns: "repeat(3, 1fr)",
+						}}
+					>
+						{enrolledTrips
+							? enrolledTrips.map((trip) => {
+									return (
+										<Card
+											key={trip._id}
+											title={trip.title}
+											createdBy={trip.createdBy}
+											startDate={formatDate(trip.startDate)}
+											endDate={formatDate(trip.endDate)}
+											memberCount={trip.memberCount}
+											coverImage={trip.coverImage}
+										/>
+									);
+							  })
+							: null}
+					</div>
+				</div>
+			) : null}
+			<div>
+				<h3>All trips</h3>
+				<div
+					style={{
+						display: "grid",
+						gridTemplateColumns: "repeat(3, 1fr)",
+					}}
+				>
+					{allTrips?.map((trip) => {
+						return (
+							<NavLink to={`/trips/${trip._id}`}>
+								<Card
+									key={trip._id}
+									title={trip.title}
+									createdBy={trip.createdBy}
+									startDate={formatDate(trip.startDate)}
+									endDate={formatDate(trip.endDate)}
+									memberCount={trip.memberCount}
+									coverImage={trip.coverImage}
+								/>
+							</NavLink>
+						);
+					})}
+				</div>
 			</div>
 		</div>
 	);

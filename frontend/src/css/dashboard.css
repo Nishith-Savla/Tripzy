@@ -38,6 +38,7 @@
     margin: 0;
     padding: 1em .5em;
     color: var(--dark-purple);
+    background-color: white;
 }
 
 .card-details{
