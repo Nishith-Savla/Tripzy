@@ -3,6 +3,44 @@ import trpizyLogo from "../assets/logo/tripzy.png";
 import { AuthContext } from "../context/auth";
 import { NavLink, useNavigate } from "react-router-dom";
 import { logOut } from "../firebase/firebase";
+import Dollar from "../assets/images/dollar.png";
+
+const CoinChip = ({ coins }) => {
+	return (
+		<div
+			style={{
+				display: "flex",
+				justifyContent: "center",
+				alignItems: "center",
+				maxWidth: "fit-content",
+
+				paddingTop: "0.5rem",
+				paddingBottom: "0.5rem",
+				paddingRight: "1.25rem",
+				paddingLeft: "1.25rem",
+				// maxHeight: "100px",
+				gap: "5px",
+				borderWidth: "1px",
+				borderStyle: "solid",
+				borderColor: "black",
+				borderRadius: 100,
+			}}
+		>
+			<div>
+				<img
+					style={{
+						width: "20px",
+						height: "20px",
+					}}
+					src={Dollar}
+					alt="coin"
+				/>
+			</div>
+			<div>{coins}</div>
+		</div>
+	);
+};
+
 function Navbar() {
 	const { user, loading } = useContext(AuthContext);
 	const navigate = useNavigate();
@@ -50,18 +88,8 @@ function Navbar() {
 					</NavLink>
 				</li>
 				<li className="nav-item">
-					<NavLink className="nav-link" to="">
-						Link
-					</NavLink>
-				</li>
-				<li className="nav-item">
-					<NavLink className="nav-link" to="">
-						Link
-					</NavLink>
-				</li>
-				<li className="nav-item">
-					<NavLink className="nav-link" to="">
-						Link
+					<NavLink className="nav-link" to="/trips/new">
+						Host Trip
 					</NavLink>
 				</li>
 			</ul>
@@ -74,7 +102,9 @@ function Navbar() {
 					aria-label="Search"
 					style={{ width: "500px", margin: "10px 30px 0px 10px" }}
 				/>
-				<button
+
+				<CoinChip coins={user?.coins || 23} />
+				{/* <button
 					style={{
 						padding: "5px 20px",
 						color: "#fff",
@@ -86,7 +116,7 @@ function Navbar() {
 					type="submit"
 				>
 					Search
-				</button>
+				</button> */}
 				<Display />
 			</form>
 		</header>
