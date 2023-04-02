@@ -2,24 +2,21 @@ const Trip = require("../models/trip-model");
 const catchAsync = require("../utils/catch-async");
 const AppError = require("../utils/app-error");
 const APIFeatures = require("../utils/api-features");
-const imageKit = require("../utils/imagekit-utils");
+const { addCoins } = require("../utils/coins");
 
 exports.createTrip = catchAsync(async (req, res, next) => {
 	console.log(req.body);
-
-	// Upload req.body.coverImage to imagekit
-	const imagekitResponse = await imageKit.upload({
-		file: req.body.coverImage,
-		fileName: req.body.title,
-	});
-	req.body.coverImage = imagekitResponse.url;
-
-	const trip = await Trip.create(req.body);
-
-	res.status(201).json({
-		status: "success",
-		data: trip,
-	});
+	try {
+		const trip = await Trip.create(req.body);
+		addCoins(req.user, 50);
+		res.status(201).json({
+			status: "success",
+			data: trip,
+		});
+	} catch (error) {
+		console.log(error);
+		return next(new AppError(`Can't create trip`, 400));
+	}
 });
 
 exports.getTripsByName = catchAsync(async (req, res, next) => {
