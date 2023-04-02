@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useRef } from "react";
 
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { getTrip } from "../api/trips";
 import {
@@ -36,14 +36,30 @@ import {
 	MessageAuthor,
 	MessageStatus,
 } from "../components";
-import { formatDate } from "../utils";
+import { axiosInstance, formatDate } from "../utils";
 
 const ViewTripDetails = () => {
 	const { id } = useParams();
+	const sug = useRef(null);
 
 	const tripQuery = useQuery({
 		queryKey: ["trips", id],
 		queryFn: () => getTrip(id),
+	});
+
+	function createSuggestion(id, dt) {
+		return axiosInstance
+			.post(`suggestions/${id}`, {
+				tripId: id,
+				dt,
+			})
+			.then((res) => res.dt);
+	}
+
+	const createSuggestionMutate = useMutation({
+		mutationFn: (dt) => {
+			return createSuggestion(id, dt);
+		},
 	});
 
 	if (tripQuery.isLoading && tripQuery.fetchStatus !== "idle") {
@@ -51,6 +67,16 @@ const ViewTripDetails = () => {
 	}
 
 	const { data } = tripQuery.data;
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		const formData = new FormData(e.target);
+		// const data = Object.fromEntries(formData);
+		let dt = {
+			suggestion: sug?.current.value,
+		};
+		createSuggestionMutate.mutate(id, dt);
+	};
 
 	return (
 		<>
@@ -120,9 +146,9 @@ const ViewTripDetails = () => {
 			<Suggestion>
 				<div className="left-side">
 					<Title color="#000">Suggestions</Title>
-					<Form>
-						<TextArea placeholder="Type your suggestion..." rows={5} />
-						<Button>Submit</Button>
+					<Form onSubmit={handleSubmit}>
+						<TextArea ref={sug} placeholder="Type your suggestion..." rows={5} />
+						<Button type="submit">Submit</Button>
 					</Form>
 				</div>
 

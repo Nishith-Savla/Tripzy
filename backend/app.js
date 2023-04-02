@@ -32,10 +32,10 @@ app.use("/api/trips", tripRouter);
 app.use("/api/activities", activityRouter);
 app.use("/api/enrolledTrips", enrolledTripsRouter);
 app.use("/api/itineraries", itineraryRouter);
-app.use("/api/suggessions", suggessionRouter);
+app.use("/api/suggestions", suggessionRouter);
 
 app.all("*", (req, res, next) => {
-  next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
+	next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
 });
 
 // global error handler

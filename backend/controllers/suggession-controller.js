@@ -3,26 +3,30 @@ const catchAsync = require("../utils/catch-async");
 const AppError = require("../utils/app-error");
 
 exports.createSuggession = catchAsync(async (req, res, next) => {
-  const { tripId } = req.params;
-  const suggession = await Suggession.create(req.body);
+	const { tripId } = req.params;
+	console.log(req.body);
+	req.body.userId = req.user._id;
+	req.body.status = "pending";
 
-  if (!suggession) {
-    return next(new AppError("No suggession found with this Id.", 404));
-  }
+	const suggession = await Suggession.create(req.body);
 
-  res.status(201).json({
-    status: "success",
-    data: suggession,
-  });
+	if (!suggession) {
+		return next(new AppError("No suggession found with this Id.", 404));
+	}
+
+	res.status(201).json({
+		status: "success",
+		data: suggession,
+	});
 });
 
 exports.getAllSuggessions = catchAsync(async (req, res, next) => {
-  const { tripId } = req.params;
-  const suggessions = await Suggession.find({ trip: tripId });
+	const { tripId } = req.params;
+	const suggessions = await Suggession.find({ trip: tripId });
 
-  res.status(200).json({
-    status: "success",
-    results: suggessions.length,
-    data: suggessions,
-  });
+	res.status(200).json({
+		status: "success",
+		results: suggessions.length,
+		data: suggessions,
+	});
 });
