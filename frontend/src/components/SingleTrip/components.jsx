@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Section = styled.section`
-	background-color: #fbffb1;
+	background-color: #f5e9cf;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	height: 100%;
@@ -20,23 +20,32 @@ export const Background = styled.div`
 	padding: 20px;
 	background-size: cover;
 	background-repeat: no-repeat;
+	border-radius: 40px;
 `;
 
 export const Title = styled.h2`
 	font-size: ${(props) => props.fontSize || "40px"};
-	font-weight: 500;
+	font-weight: 600;
 	color: ${(props) => props.color || "#fff"};
 	text-shadow: 1px 1px #000;
 `;
 
+export const Heading = styled.p`
+	font-size: 30px;
+	padding: 0px 0px 0px 0px;
+	font-weight: 600;
+	margin-bottom: 0px;
+`;
 export const Description = styled.p`
 	font-size: 22px;
-	background-color: #bfdb3890;
+	color: #000;
+	font-weight: 400;
+	background-color: #f5e9cf95;
 	padding: 10px;
 `;
 
 export const Content = styled.div`
-	padding: 30px 15px;
+	padding: 10px 15px;
 	display: flex;
 	justify-content: flex-start;
 	gap: 15px;
@@ -66,6 +75,7 @@ export const Flex = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	background-color: ${(props) => props.bgColor || "#fbffb180"};
 	flex-direction: ${(props) => props.flexDirection || "row"};
 	gap: 5px;
 `;
@@ -73,8 +83,8 @@ export const Flex = styled.div`
 export const Box = styled.h4`
 	padding: 10px;
 	border-radius: 5px;
-	background-color: ${(props) => props.bgColor || "#4D455D"};
-	color: ${(props) => props.color || "#fff"};
+	//background-color: ${(props) => props.bgColor || "#4D455D"};
+	color: ${(props) => props.color || "#000"};
 	display: flex;
 	align-items: flex-start;
 	flex-direction: column;
@@ -82,9 +92,9 @@ export const Box = styled.h4`
 `;
 
 export const Button = styled.button`
-	padding: 10px 20px;
+	padding: 5px 20px;
 	color: #fff;
-	background-color: #4d455d;
+	background-color: #fc7300;
 	border: none;
 	outline: none;
 	font-size: 24px;
