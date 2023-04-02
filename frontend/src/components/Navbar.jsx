@@ -88,18 +88,8 @@ function Navbar() {
 					</NavLink>
 				</li>
 				<li className="nav-item">
-					<NavLink className="nav-link" to="">
-						Link
-					</NavLink>
-				</li>
-				<li className="nav-item">
-					<NavLink className="nav-link" to="">
-						Link
-					</NavLink>
-				</li>
-				<li className="nav-item">
-					<NavLink className="nav-link" to="">
-						Link
+					<NavLink className="nav-link" to="/trips/new">
+						Host Trip
 					</NavLink>
 				</li>
 			</ul>
