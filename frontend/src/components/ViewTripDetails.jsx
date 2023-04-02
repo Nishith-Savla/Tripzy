@@ -1,40 +1,38 @@
 import React, { useRef } from "react";
 
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { getTrip } from "../api/trips";
 import {
-	Background,
-	Box,
-	Button,
-	Content,
-	Description,
-	Flex,
-	Heading,
-	MapLink,
-	Section,
-	Title,
 	Activities,
 	Activity,
 	ActivityDate,
 	ActivityDescription,
 	ActivityFlex,
-	ActivityTitle,
 	ActivityImage,
-	Card,
-	Cards,
+	ActivityTitle,
+	Background,
+	Box,
+	Button,
+	Container,
+	Content,
 	Day,
+	Description,
+	Flex,
+	Form,
+	Heading,
 	Itinerary,
+	MapLink,
+	Message,
+	MessageAuthor,
+	MessageFlex,
+	MessageStatus,
+	MessageTitle,
+	Section,
 	Span,
 	Suggestion,
-	Form,
 	TextArea,
-	Container,
-	MessageFlex,
-	Message,
-	MessageTitle,
-	MessageAuthor,
-	MessageStatus,
+	Title,
 } from "../components";
 import { axiosInstance, formatDate } from "../utils";
 
@@ -56,9 +54,13 @@ const ViewTripDetails = () => {
 			.then((res) => res.dt);
 	}
 
-	const createSuggestionMutate = useMutation({
-		mutationFn: (dt) => {
-			return createSuggestion(id, dt);
+	const enrollTripMutation = useMutation({
+		mutationFn: () => {
+			return enrollTrip(id);
+		},
+		onSuccess: () => {
+			// queryClient.invalidateQueries(["trips"]);
+			console.log("Success");
 		},
 	});
 
@@ -87,7 +89,13 @@ const ViewTripDetails = () => {
 					}}
 				>
 					<Title>{data?.title}</Title>
-					<Button>Join Now</Button>
+					<Button
+						onClick={() => {
+							enrollTripMutation.mutate();
+						}}
+					>
+						Join Now
+					</Button>
 				</Background>
 				<Content>
 					<Description>

@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import Dollar from "../assets/images/dollar.png";
 import trpizyLogo from "../assets/logo/tripzy.png";
 import { AuthContext } from "../context/auth";
-import { NavLink, useNavigate } from "react-router-dom";
 import { logOut } from "../firebase/firebase";
-import Dollar from "../assets/images/dollar.png";
 
 const CoinChip = ({ coins }) => {
 	return (

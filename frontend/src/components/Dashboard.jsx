@@ -1,10 +1,10 @@
-import React from "react";
-import Card from "./card";
-import "../css/dashboard.css";
-import { getEnrolledTrips, getTrips } from "../api/trips";
 import { useQuery } from "@tanstack/react-query";
-import { formatDate } from "../utils";
+import React from "react";
 import { NavLink } from "react-router-dom";
+import { getEnrolledTrips, getTrips } from "../api/trips";
+import "../css/dashboard.css";
+import { formatDate } from "../utils";
+import Card from "./card";
 
 function Dashboard() {
 	const allTripsQuery = useQuery({
@@ -47,8 +47,8 @@ function Dashboard() {
 											key={trip._id}
 											title={trip.title}
 											createdBy={trip.createdBy}
-											startDate={formatDate(trip.startDate)}
-											endDate={formatDate(trip.endDate)}
+											startDate={formatDate(trip.startDate ?? Date.now())}
+											endDate={formatDate(trip.endDate ?? Date.now())}
 											memberCount={trip.memberCount}
 											coverImage={trip.coverImage}
 										/>
