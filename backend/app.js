@@ -7,6 +7,7 @@ const tripRouter = require("./routes/trip-route");
 const userRouter = require("./routes/user-route");
 const enrolledTripsRouter = require("./routes/enrolled-trips-route");
 const activityRouter = require("./routes/activity-route");
+const itineraryRouter = require("./routes/itinerary-route");
 
 const AppError = require("./utils/app-error");
 
@@ -27,6 +28,7 @@ app.use("/api/auth", userRouter);
 app.use("/api/trips", tripRouter);
 app.use("/api/activities", activityRouter);
 app.use("/api/enrolledTrips", enrolledTripsRouter);
+app.use("/api/itineraries", itineraryRouter);
 
 app.all("*", (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
