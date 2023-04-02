@@ -113,7 +113,7 @@ function Navbar() {
 					style={{ width: "500px", margin: "10px 30px 0px 10px" }}
 				/>
 
-				<CoinChip coins={user?.coins} />
+				<CoinChip coins={user?.coins || 23} />
 				{/* <button
 					style={{
 						padding: "5px 20px",
