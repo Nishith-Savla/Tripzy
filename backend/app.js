@@ -9,6 +9,7 @@ const coinsRouter = require("./routes/coins-route");
 const enrolledTripsRouter = require("./routes/enrolled-trips-route");
 const activityRouter = require("./routes/activity-route");
 const itineraryRouter = require("./routes/itinerary-route");
+const suggessionRouter = require("./routes/suggession-route");
 
 const AppError = require("./utils/app-error");
 
@@ -31,9 +32,10 @@ app.use("/api/trips", tripRouter);
 app.use("/api/activities", activityRouter);
 app.use("/api/enrolledTrips", enrolledTripsRouter);
 app.use("/api/itineraries", itineraryRouter);
+app.use("/api/suggessions", suggessionRouter);
 
 app.all("*", (req, res, next) => {
-	next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
+  next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
 });
 
 // global error handler
