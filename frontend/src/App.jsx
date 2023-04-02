@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import AddActivities from "./components/AddActivities";
+import AddActivity from "./components/AddActivity";
 import Dashboard from "./components/Dashboard";
 import EditTrip from "./components/EditTrip";
 import SingleTrip from "./components/SingleTrip/SingleTrip";
@@ -21,10 +21,10 @@ function App() {
 						<Navbar />
 						<Routes>
 							<Route path="/signin" element={<Signup />} />
-							<Route path="/addActivity" element={<AddActivities />} />
 							<Route path="/" element={<Dashboard />} />
 							<Route path="/createTrip" element={<EditTrip id="6428199dd63fe521bc4a8dc4" />} />
 							<Route path="/single-trip" element={<SingleTrip />} />
+							<Route path="/add-activity" element={<AddActivity />} />
 						</Routes>
 					</Router>
 				</AuthProvider>

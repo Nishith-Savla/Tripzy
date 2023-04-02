@@ -5,6 +5,7 @@ const cors = require("cors");
 const errorController = require("./controllers/error-controller");
 const tripRouter = require("./routes/trip-route");
 const userRouter = require("./routes/user-route");
+const coinsRouter = require("./routes/coins-route");
 const enrolledTripsRouter = require("./routes/enrolled-trips-route");
 const activityRouter = require("./routes/activity-route");
 const itineraryRouter = require("./routes/itinerary-route");
@@ -25,13 +26,14 @@ if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
 
 // routes
 app.use("/api/auth", userRouter);
+app.use("/api/coins", coinsRouter);
 app.use("/api/trips", tripRouter);
 app.use("/api/activities", activityRouter);
 app.use("/api/enrolledTrips", enrolledTripsRouter);
 app.use("/api/itineraries", itineraryRouter);
 
 app.all("*", (req, res, next) => {
-  next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
+	next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
 });
 
 // global error handler
