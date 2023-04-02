@@ -1,14 +1,35 @@
 const Trip = require("../models/trip-model");
+const EnrolledTripsModel = require("../models/enrolled-trips-model");
 const catchAsync = require("../utils/catch-async");
 const AppError = require("../utils/app-error");
 const APIFeatures = require("../utils/api-features");
 const { addCoins } = require("../utils/coins");
+const schedule = require("node-schedule");
+const User = require("../models/user-model");
 
 exports.createTrip = catchAsync(async (req, res, next) => {
 	console.log(req.body);
 	try {
+		req.body.createdBy = req.user._id;
 		const trip = await Trip.create(req.body);
 		addCoins(req.user, 50);
+
+		const endDate = new Date(trip.enddate);
+
+		const job = schedule.scheduleJob(endDate, function () {
+			EnrolledTripsModel.find({ tripId: trip._id })
+				.populate("UserId")
+				.then((enrolledUsers) => {
+					enrolledUsers.forEach(async (obj) => {
+						let user = obj.userId;
+						user = await User.findById(user._id);
+						console.log("Updating coins for user: " + user.email);
+						console.log("Previoud coins: " + user.coins);
+						addCoins(user, 10);
+					});
+				});
+		});
+
 		res.status(201).json({
 			status: "success",
 			data: trip,
@@ -50,12 +71,13 @@ exports.getTripById = catchAsync(async (req, res, next) => {
 });
 
 exports.getAllTrips = catchAsync(async (req, res, next) => {
-	const features = new APIFeatures(Trip.find(), req.query)
-		.filter()
-		.sort()
-		.fieldLimit()
-		.pagination();
-	const trips = await features.query;
+	// const features = new APIFeatures(Trip.find(), req.query)
+	// 	.filter()
+	// 	.sort()
+	// 	.fieldLimit()
+	// 	.pagination();
+	// const trips = await features.query;
+	const trips = await Trip.find().populate("createdBy");
 
 	res.status(200).json({
 		status: "success",
