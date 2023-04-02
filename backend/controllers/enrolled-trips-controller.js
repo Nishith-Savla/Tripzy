@@ -1,7 +1,7 @@
 const EnrolledTripsModel = require("../models/enrolled-trips-model");
 const AppError = require("../utils/app-error");
 const catchAsync = require("../utils/catch-async");
-const addCoins = require("../utils/addCoins");
+const { addCoins } = require("../utils/coins");
 
 exports.getAllEnrolledTrips = catchAsync(async (req, res, next) => {
 	const enrolled_trips = await EnrolledTripsModel.find({
