@@ -44,7 +44,6 @@ const CoinChip = ({ coins }) => {
 function Navbar() {
 	const { user, loading } = useContext(AuthContext);
 	const navigate = useNavigate();
-	console.log(user);
 	useEffect(() => {
 		if (!user && !loading) {
 			navigate("/signin");
