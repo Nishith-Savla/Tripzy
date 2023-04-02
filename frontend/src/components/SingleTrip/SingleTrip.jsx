@@ -13,6 +13,9 @@ import {
 	Box,
 	Button,
 	Heading,
+	Itinerary,
+	Day,
+	Activity,
 } from "./components";
 
 const SingleTrip = () => {
@@ -51,11 +54,26 @@ const SingleTrip = () => {
 					</Flex>
 				</Content>
 			</Section>
-			<Section>
-				<Content>
-					<Title>Itinerary</Title>
-				</Content>
-			</Section>
+			<Itinerary>
+				<Title color="#000">Itinerary</Title>
+				<Day>
+					<Heading font-size="20px">Day 1</Heading>
+					<Activity>activity 1</Activity>
+					<Activity>activity 1</Activity>
+
+					<Activity>activity 1</Activity>
+					<Activity>activity 1</Activity>
+					<Activity>activity 1</Activity>
+					<Activity>activity 1</Activity>
+
+					<Activity>activity 1</Activity>
+				</Day>
+				<Day>
+					<Heading font-size="20px">Day 2</Heading>
+					<Activity>activity 1</Activity>
+					<Activity>activity 1</Activity>
+				</Day>
+			</Itinerary>
 		</>
 	);
 };

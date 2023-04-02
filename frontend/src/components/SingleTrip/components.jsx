@@ -31,8 +31,8 @@ export const Title = styled.h2`
 `;
 
 export const Heading = styled.p`
-	font-size: 30px;
-	padding: 0px 0px 0px 0px;
+	font-size: ${(props) => props.fontSize || "30px"};
+	padding: 20px 20px 10px 20px;
 	font-weight: 600;
 	margin-bottom: 0px;
 `;
@@ -51,6 +51,25 @@ export const Content = styled.div`
 	gap: 15px;
 	flex-direction: column;
 	width: 100%;
+`;
+
+export const Itinerary = styled.section`
+	background-color: #f5e9cf10;
+	display: grid;
+	grid-template-columns: 1fr;
+	height: 100%;
+	width: 100%;
+	padding: 20px;
+`;
+
+export const Day = styled.div`
+	display: block;
+	background-color: #f5e9cf80;
+`;
+
+export const Activity = styled.li`
+	margin-left: 40px;
+	background-color: #f5e9cf;
 `;
 
 export const Cards = styled.div`
@@ -98,4 +117,22 @@ export const Button = styled.button`
 	border: none;
 	outline: none;
 	font-size: 24px;
+`;
+
+export const ActivityImage = styled.img`
+	height: 100px;
+	width: 100px;
+	border-radius: 5px;
+`;
+
+export const ActivityTitle = styled.h4`
+	font-size: 20px;
+	font-weight: 600;
+	color: #333;
+`;
+
+export const ActivityDescription = styled.p`
+	font-size: 16px;
+	font-weight: 400;
+	color: #555;
 `;
