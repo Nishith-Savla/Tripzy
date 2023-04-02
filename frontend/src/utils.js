@@ -22,5 +22,6 @@ export const axiosInstance = axios.create({
 
 // format in yyyy-MM-dd
 export const formatDate = (date) => {
+	console.log(date);
 	return new Date(date).toISOString().slice(0, 10);
 };
