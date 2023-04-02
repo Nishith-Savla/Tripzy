@@ -15,7 +15,7 @@ function Signup() {
 	const navigate = useNavigate();
 	useEffect(() => {
 		if (user && !loading) {
-			navigate("/");
+			navigate("/", { replace: true });
 		}
 	}, [user]);
 

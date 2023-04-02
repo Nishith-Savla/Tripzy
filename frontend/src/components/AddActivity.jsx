@@ -1,6 +1,6 @@
 import React from "react";
 import "../css/modal.css";
-import Navbar from "./navbar";
+import Navbar from "./Navbar";
 import "../css/createTrip.css";
 
 function AddActivity() {

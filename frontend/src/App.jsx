@@ -4,13 +4,21 @@ import { ToastContainer } from "react-toastify";
 import AddActivity from "./components/AddActivity";
 import Dashboard from "./components/Dashboard";
 import EditTrip from "./components/EditTrip";
-import SingleTrip from "./components/SingleTrip/SingleTrip";
-import Navbar from "./components/navbar";
-import Signup from "./components/signup";
+import ViewTripDetails from "./components/ViewTripDetails";
+import Navbar from "./components/Navbar";
+import Signin from "./components/SignIn";
 import AuthProvider from "./context/auth";
 import "./css/palette.css";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+	defaultOptions: {
+		queries: {
+			refetchOnWindowFocus: false,
+			retry: false,
+			staleTime: 1000 * 30,
+		},
+	},
+});
 
 function App() {
 	return (
@@ -20,11 +28,14 @@ function App() {
 					<Router>
 						<Navbar />
 						<Routes>
-							<Route path="/signin" element={<Signup />} />
 							<Route path="/" element={<Dashboard />} />
-							<Route path="/createTrip" element={<EditTrip id="6428199dd63fe521bc4a8dc4" />} />
-							<Route path="/single-trip" element={<SingleTrip />} />
-							<Route path="/add-activity" element={<AddActivity />} />
+							<Route path="/signin" element={<Signin />} />
+							<Route path="/trips">
+								<Route path="new" element={<EditTrip />} />
+								<Route path=":id" element={<ViewTripDetails />} />
+								<Route path=":id/update" element={<EditTrip />} />
+								<Route path=":id/add-activity" element={<AddActivity />} />
+							</Route>
 						</Routes>
 					</Router>
 				</AuthProvider>

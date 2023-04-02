@@ -30,13 +30,13 @@ export const Title = styled.h2`
 	text-shadow: 1px 1px #000;
 `;
 
-export const Heading = styled.p`
+export const Heading = styled.div`
 	font-size: ${(props) => props.fontSize || "30px"};
 	padding: 20px 20px 10px 20px;
 	font-weight: 600;
 	margin-bottom: 0px;
 `;
-export const Description = styled.p`
+export const Description = styled.div`
 	font-size: 22px;
 	color: #000;
 	font-weight: 400;
