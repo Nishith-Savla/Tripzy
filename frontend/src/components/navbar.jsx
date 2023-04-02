@@ -6,7 +6,6 @@ function Navbar() {
 	const { user, loading } = useContext(AuthContext);
 	const navigate = useNavigate();
 	useEffect(() => {
-		console.log(user);
 		if (!user && !loading) {
 			navigate("/signin");
 		}

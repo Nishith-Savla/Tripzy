@@ -14,10 +14,10 @@ export const notify = (message, type) => {
 export const axiosInstance = axios.create({
 	baseURL: import.meta.env.VITE_backendURL,
 	headers: {
+		Authorization: `Bearer ${localStorage.getItem("access_token")}`,
 		"ngrok-skip-browser-warning": true,
-    Authorization : `Bearer ${localStorage.getItem("access_token")}`
+		// timeout: 1000,
 	},
-	// timeout: 1000,
 });
 
 // format in yyyy-MM-dd

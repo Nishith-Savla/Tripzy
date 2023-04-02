@@ -3,7 +3,6 @@ import { useEffect, useRef } from "react";
 import { createTrip, getTrip, updateTrip } from "../api/trips";
 import "../css/CreateTrip.css";
 import { formatDate } from "../utils";
-import Navbar from "./navbar";
 
 const queryClient = new QueryClient();
 
@@ -49,7 +48,6 @@ function EditTrip({ id }) {
 	return (
 		<>
 			<section id="create-trip" className="d-flex dir-col">
-				<Navbar />
 				<h2 className="text-center trip-title">Create Trip</h2>
 				<div className="d-flex justify-content-center">
 					<form

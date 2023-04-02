@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 import { loginWithGoogle, auth } from "../firebase/firebase";
 import { postUser } from "../api/user";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { notify } from "../utils";
 
 export const AuthContext = createContext();
 
@@ -13,20 +14,19 @@ const AuthProvider = (props) => {
 	}, []);
 
 	const login = async () => {
-		const { error } = await loginWithGoogle();
+		const { user, error } = await loginWithGoogle();
 
 		if (!user && !loading) {
 			console.log(error);
-			if (error.code !== "auth/cancelled-popup-request") {
+			if (error?.code !== "auth/cancelled-popup-request") {
 				notify(error.message, "error");
 			}
 			return;
 		}
 
-		const { id } = await postUser({ token: user.accessToken });
-
-		user.id = id;
-		// setUser(user);
+		await postUser({ token: user.accessToken });
+		localStorage.setItem("access_token", user.accessToken);
+		console.log(localStorage.getItem("access_token"));
 	};
 
 	const value = { user, login, loading, error };
