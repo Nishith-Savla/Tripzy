@@ -12,6 +12,10 @@ export function getTrip(id) {
 	return axiosInstance.get(`trips/${id}`).then((res) => res.data);
 }
 
+export function enrollTrip(tripId) {
+	return axiosInstance.post(`/enrolledTrips`, { tripId }).then((res) => res.data);
+}
+
 export function createTrip({
 	title,
 	description,

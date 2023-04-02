@@ -1,8 +1,8 @@
 import React from "react";
 
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import { getTrip } from "../api/trips";
+import { enrollTrip, getTrip } from "../api/trips";
 import {
 	Background,
 	Box,
@@ -24,6 +24,16 @@ const ViewTripDetails = () => {
 		queryFn: () => getTrip(id),
 	});
 
+	const enrollTripMutation = useMutation({
+		mutationFn: () => {
+			return enrollTrip(id);
+		},
+		onSuccess: () => {
+			// queryClient.invalidateQueries(["trips"]);
+			console.log("Success");
+		},
+	});
+
 	if (tripQuery.isLoading && tripQuery.fetchStatus !== "idle") {
 		return <div>Loading...</div>;
 	}
@@ -39,7 +49,13 @@ const ViewTripDetails = () => {
 					}}
 				>
 					<Title>{data?.title}</Title>
-					<Button>Join Now</Button>
+					<Button
+						onClick={() => {
+							enrollTripMutation.mutate();
+						}}
+					>
+						Join Now
+					</Button>
 				</Background>
 				<Content>
 					<Description>
