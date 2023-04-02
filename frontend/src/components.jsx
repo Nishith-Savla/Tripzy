@@ -24,7 +24,7 @@ export const Background = styled.div`
 `;
 
 export const Title = styled.h2`
-	font-size: ${(props) => props.fontSize || "40px"};
+	font-size: ${(props) => props.fontSize || "34px"};
 	font-weight: 600;
 	color: ${(props) => props.color || "#fff"};
 	text-shadow: 1px 1px #000;
@@ -171,7 +171,70 @@ export const Span = styled.span`
 `;
 
 export const MapLink = styled.a`
-	font-size: 16px;
+	font-size: 20px;
 	font-weight: 400;
 	color: #5611df;
+	text-align: ${(props) => props.textAlign || "left"};
+`;
+
+export const Suggestion = styled.div`
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 20px;
+	padding: 20px;
+`;
+
+export const Form = styled.form`
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+`;
+
+export const TextArea = styled.textarea`
+	padding: 10px;
+	border: 2px solid #333;
+	outline: none;
+	border-radius: 5px;
+`;
+
+export const Container = styled.div`
+	background-color: #f5e9cf;
+	height: 35vh;
+	width: 100%;
+	overflow-y: scroll;
+	margin-top: 20px;
+	padding: 10px;
+`;
+
+export const Message = styled.div`
+	padding: 20px;
+	background-color: #4d455d;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+`;
+
+export const MessageFlex = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+`;
+
+export const MessageTitle = styled.h4`
+	font-size: 18px;
+	color: #bdbcbc;
+`;
+
+export const MessageAuthor = styled.p`
+	font-size: 20px;
+	font-weight: 600;
+	color: #fff;
+`;
+
+export const MessageStatus = styled.p`
+	font-size: 16px;
+	background-color: gray;
+	color: #fff;
+	padding: 10px;
+	border-radius: 5px;
 `;
